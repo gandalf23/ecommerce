@@ -39,7 +39,7 @@
     
           
           <%= link_to root_path, class: "navbar-brand" do %>
-            <i class="glyphicon glyphicon-home"> All items</i>
+            <i class="glyphicon glyphicon-home"> Mike's Store</i>
           <% end %>
         </div>
     
@@ -55,15 +55,35 @@
                </ul>
            </li>
       
-          </ul>
-  
+
+           <li class="dropdown">
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Find by Brand<span class="caret"></span></a>
+               <ul class="dropdown-menu" role="menu">
+                 <% @brands.each do |brand| %>
+                   <li> <%= link_to brand, branding_path(brand: brand) %> </li>
+                <% end %>
+               </ul>
+           </li>
+      
+          </ul> 
           
-          <ul class="nav navbar-nav navbar-right">
-         
+            <ul class="nav navbar-nav navbar-right">
+             <% sumofquantity = 0 %>
+              <% if LineItem.count > 0 %>
+                <% @line_items.each do |line_item| %>
+                  <% sumofquantity += line_item.quantity %></li>
+                <% end %>  
+                <%= link_to  view_order_path do %>
+                  <li> <i class="glyphicon glyphicon-shopping-cart"> My Cart (<%= sumofquantity %>)</i>
+                <% end %></li>
+              <% else %>
+                <%= link_to  view_order_path do %>
+                 <li>  <i class="glyphicon glyphicon-shopping-cart"> My Cart </i>
+                <% end %> </li>
+              <% end %>
             <li><%= link_to destroy_user_session_path, method: :delete do %>
             <i class="glyphicon glyphicon-log-out"> Sign Out</i>
           <% end %></li>
-              
               <li><%= link_to edit_user_registration_path do %>
                     <i class="glyphicon glyphicon-edit"> Edit Profile</i>
                   <% end %></li>
@@ -83,7 +103,7 @@
             <span class="icon-bar"></span>
           </button>
           <%= link_to "Sign Up", new_user_registration_path, class: "navbar-brand" %>
-  
+
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>

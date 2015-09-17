@@ -1,3 +1,10 @@
+/*lines 3 through 5 puts a red 1 pixel border around everything, so you can see what size stuff is, what size the containers are, etc.  very handy for figuring out why stuff is not lined up right.  */
+
+/** {*/
+/*    border: 1px solid red !important;*/
+/*}*/
+
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,3 +20,85 @@
  *= require_tree .
  *= require_self
  */
+.cant-see-me{
+    display: none;
+}
+ 
+.navbar navbar-default{
+    background-color: #55acee;
+}
+
+.container {
+  background: rgba(255,255,255,0.8);
+}
+
+.btn-purple {
+    background: purple;
+    color: white;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.btn-red {
+    background: red;
+    color: white;
+}
+
+.btn-green {
+    background: green;
+    color: white;
+}
+
+.button {
+    background: #55acee;
+    color: white;
+}
+
+.btn-twitter {
+    background: #55acee;
+    color: white;
+    display: inline-block;
+      margin-bottom: 0;
+      font-weight: normal;
+      text-align: center;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+          touch-action: manipulation;
+      cursor: pointer;
+      background-image: none;
+      border: 1px solid transparent;
+      white-space: nowrap;
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 1.42857143;
+      border-radius: 4px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+}
+
+.well {
+  background: rgba(0,0,0,0.4);
+  
+}
+
+.well img {
+  border-radius: 100px;
+}
+
+.yellow{
+  color: yellow;
+}
+
+
+.icon-flipped {
+transform: scaleX(-1);
+-moz-transform: scaleX(-1);
+-webkit-transform: scaleX(-1);
+-ms-transform: scaleX(-1);
+}
+

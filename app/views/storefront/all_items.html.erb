@@ -7,19 +7,32 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div style="height:150px;">
-                        <%= image_tag product.image.url(:thumb) %>
+                        <%= link_to image_tag(product.image.url(:thumb)), product_path(product.id) %>
                         
                     </div>
-                    <p><a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>">
-                        <span class="glyphicon glyphicon-plus"></span> quick info
-                        
-                    </a></p>
+                
                     <p><strong><%= number_to_currency product.price %> </strong></p>
                     <p><%= product.name %></p>
                     <div style="height:150px;">
-                        <p><%= product.description %></p>
+                        <% if product.description.length >250 %>
+                            <p><%= product.description[0..250]%>...<a href="#" data-toggle="modal" data-target="#myModal_<%= product.id %>">
+                            <span class="glyphicon glyphicon-plus"></span> [ more info ]</a></p>
+                        <% end %>
                         
                     </div>
+                    
+                    <p>
+                      <%= form_tag('/add_to_cart') do %>
+                        <div class="cant-see-me">
+                          <%= number_field_tag :product_id, product.id %>
+                          
+                        </div>
+                        <%= number_field_tag :quantity, nil, placeholder: "How Many?" %> <br>
+                        <%= submit_tag "Buy It!", class: "btn btn-danger" %>
+                      <% end %>
+                    </p>
+                    
+                    
                     <p>Made by: <%= product.brand %></p>
                 </div>
                 
@@ -39,7 +52,15 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+  
+                <%= form_tag('/add_to_cart') do %>
+                  <div class="cant-see-me">
+                    <%= number_field_tag :product_id, product.id %>
+                          
+                  </div>
+                    <%= number_field_tag :quantity, nil, placeholder: "How Many?" %> <br>
+                    <%= submit_tag "Buy It!", class: "btn btn-danger" %>
+                <% end %>
               </div>
             </div>
           </div>

@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  authorize_resource
+  
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # GET /products
